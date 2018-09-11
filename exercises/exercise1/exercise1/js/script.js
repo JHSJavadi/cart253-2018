@@ -13,6 +13,12 @@ var clownImage;
 var clownImageX;
 var clownImageY;
 
+//image of sakura
+var sakuraImage;
+//current position of added photo
+var sakuraImageX;
+var sakuraImageY;
+
 // The transparent image of "felt" that wipes down the canvas
 var feltTextureImage;
 // The current position of the transparent image of "felt"
@@ -27,6 +33,7 @@ var feltTextureImageY;
 function preload() {
   clownImage = loadImage("assets/images/clown.png");
   feltTextureImage = loadImage("assets/images/black-felt-texture.png");
+  sakuraImage = loadImage("assets/images/sakura.png");
 }
 
 
@@ -41,6 +48,10 @@ function setup() {
   // Start the clown image at the centre of the canvas
   clownImageX = width/2;
   clownImageY = height/2;
+
+  //start sakura at the left of the canvas
+  sakuraImageX = 0 - sakuraImage.width/2;
+  sakuraImageY = height/2;
 
   // Start the felt image perfectly off screen above the canvas
   feltTextureImageX = width/2;
@@ -61,6 +72,9 @@ function draw() {
   // Move the felt image down by increasing its y position
   feltTextureImageY += 1;
 
+  //move sakura across the screen from left to right
+  sakuraImageX += 1;
+
   // Display the felt image
   image(feltTextureImage,feltTextureImageX,feltTextureImageY);
 
@@ -75,4 +89,6 @@ function draw() {
 
   // Display the clown image
   image(clownImage,clownImageX,clownImageY);
+  //display the sakura image
+  image(sakuraImage, sakuraImageX, sakuraImageY);
 }
