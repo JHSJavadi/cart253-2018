@@ -19,6 +19,12 @@ var sakuraImage;
 var sakuraImageX;
 var sakuraImageY;
 
+//image of butterfly
+var flyImage;
+//current position of butterfly
+var flyImageX;
+var flyImageY;
+
 // The transparent image of "felt" that wipes down the canvas
 var feltTextureImage;
 // The current position of the transparent image of "felt"
@@ -34,6 +40,7 @@ function preload() {
   clownImage = loadImage("assets/images/clown.png");
   feltTextureImage = loadImage("assets/images/black-felt-texture.png");
   sakuraImage = loadImage("assets/images/sakura.png");
+  flyImage= loadImage("assets/images/butterfly.png");
 }
 
 
@@ -52,6 +59,10 @@ function setup() {
   //start sakura at the left of the canvas
   sakuraImageX = 0 - sakuraImage.width/2;
   sakuraImageY = height/2;
+
+  //start the butterfly at the center of the canvas
+  flyImageX = width/2;
+  flyImageY = height/2;
 
   // Start the felt image perfectly off screen above the canvas
   feltTextureImageX = width/2;
@@ -87,8 +98,14 @@ function draw() {
   clownImageX = clownImageX + xDistance/10;
   clownImageY = clownImageY + yDistance/10;
 
+  //move the butterfly according to the mouse's location
+  flyImageX = mouseX;
+  flyImageY = mouseY;
+
   // Display the clown image
   image(clownImage,clownImageX,clownImageY);
   //display the sakura image
   image(sakuraImage, sakuraImageX, sakuraImageY);
+  //display the butterfly image
+  image(flyImage, flyImageX, flyImageY);
 }
