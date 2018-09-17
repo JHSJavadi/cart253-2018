@@ -25,22 +25,26 @@ var flyImage;
 var flyImageX;
 var flyImageY;
 
+//image of coffee cup
+var coffeeImage;
+//current position of coffee
+var coffeeImageX;
+var coffeeImageY;
 // The transparent image of "felt" that wipes down the canvas
 var feltTextureImage;
 // The current position of the transparent image of "felt"
 var feltTextureImageX;
 var feltTextureImageY;
 
-
 // preload()
-//
-// Load the two images we're using before the program starts
+// Load the images we're using before the program starts
 
 function preload() {
   clownImage = loadImage("assets/images/clown.png");
   feltTextureImage = loadImage("assets/images/black-felt-texture.png");
   sakuraImage = loadImage("assets/images/sakura.png");
   flyImage= loadImage("assets/images/butterfly.png");
+  coffeeImage = loadImage("assets/images/coffee.png");
 }
 
 
@@ -51,7 +55,6 @@ function preload() {
 function setup() {
   // Create our canvas
   createCanvas(640,640);
-
   // Start the clown image at the centre of the canvas
   clownImageX = width/2;
   clownImageY = height/2;
@@ -63,6 +66,10 @@ function setup() {
   //start the butterfly at the center of the canvas
   flyImageX = width/2;
   flyImageY = height/2;
+
+  //start the coffee cup a third of the way down the canvas
+  coffeeImageX = width/3;
+  coffeeImageY = height/3;
 
   // Start the felt image perfectly off screen above the canvas
   feltTextureImageX = width/2;
@@ -98,6 +105,15 @@ function draw() {
   clownImageX = clownImageX + xDistance/10;
   clownImageY = clownImageY + yDistance/10;
 
+  // Move the coffee by moving it 1/80th of its current distance from the mouse
+  // Calculate the distance in X and in Y
+  var xDistance2 = mouseX - coffeeImageX;
+  var yDistance2 = mouseY - coffeeImageY;
+  // Add 1/80th of the x and y distance to the clown's current (x,y) location
+  coffeeImageX = coffeeImageX + xDistance2/80;
+  coffeeImageY = coffeeImageY + yDistance2/80;
+
+
   //move the butterfly according to the mouse's location
   flyImageX = mouseX;
   flyImageY = mouseY;
@@ -108,4 +124,6 @@ function draw() {
   image(sakuraImage, sakuraImageX, sakuraImageY);
   //display the butterfly image
   image(flyImage, flyImageX, flyImageY);
+  //display the coffee cup images
+  image(coffeeImage, coffeeImageX, coffeeImageY);
 }
