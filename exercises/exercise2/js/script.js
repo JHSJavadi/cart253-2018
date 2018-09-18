@@ -22,7 +22,7 @@ var enemyX;
 var enemyY;
 var enemySize = 50;
 // How much bigger the enemy circle gets with each successful dodge
-var enemySizeIncrease = 5;
+var enemySizeIncrease = 20;
 
 // The speed and velocity of our enemy circle
 var enemySpeed = 5;
@@ -32,6 +32,11 @@ var enemySpeedIncrease = 0.5;
 
 // How many dodges the player has made
 var dodges = 0;
+var myFont;
+
+function preload() {
+  myFont = loadFont("assets/font/kh.ttf");
+}
 
 // setup()
 //
@@ -60,14 +65,17 @@ function setup() {
 // game over situations.
 function draw() {
   // A pink background
-  background(255,220,220);
-  //align the text at the top left
-  textAlign(LEFT, TOP);
+  background(229, 229, 229);
+  //set a font
+  textFont(myFont);
   //set the size of the text
-  textSize(25);
+  textSize(30);
   //display the amount of times the player dodged the enemy circle
   console.log("display text");
-  text(dodges, width/10, height/20);
+  //align the text at the top left
+  textAlign(LEFT, TOP);
+  fill(41, 48, 142);
+  text ("Total dodge rolls  " + dodges, width/20, height/20);
   // Default the avatar's velocity to 0 in case no key is pressed this frame
   avatarVX = 0;
   avatarVY = 0;
@@ -148,7 +156,7 @@ function draw() {
     enemyY = random(0,height);
     // Increase the enemy's speed and size to make the game harder
     enemySpeed = enemySpeed + enemySpeedIncrease;
-    enemySize = enemySize + enemySizeIncrease;
+    enemySize = enemySize + random(10,enemySizeIncrease);
   }
 
   // Display the current number of successful in the console
