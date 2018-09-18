@@ -66,6 +66,7 @@ function draw() {
   //set the size of the text
   textSize(25);
   //display the amount of times the player dodged the enemy circle
+  console.log("display text");
   text(dodges, width/10, height/20);
   // Default the avatar's velocity to 0 in case no key is pressed this frame
   avatarVX = 0;
