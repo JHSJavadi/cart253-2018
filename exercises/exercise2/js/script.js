@@ -112,6 +112,50 @@ background(bgImg);
     avatarVY = avatarSpeed;
   }
 
+if (dodges <=5) {
+  console.log("move slower")
+  if (keyIsDown(LEFT_ARROW)) {
+    console.log("left arrow is pressed");
+    avatarVX = -avatarSpeed/3;
+  }
+  else if (keyIsDown(RIGHT_ARROW)) {
+    console.log("right arrow is pressed");
+    avatarVX = avatarSpeed/3;
+  }
+
+  // Up and down (separate if-statements so you can move vertically and
+  // horizontally at the same time)
+  if (keyIsDown(UP_ARROW)) {
+    console.log("up arrow is pressed");
+    avatarVY = -avatarSpeed/3;
+  }
+  else if (keyIsDown(DOWN_ARROW)) {
+    console.log("down arrow is pressed");
+    avatarVY = avatarSpeed/3;
+  }
+  else {
+    if (keyIsDown(LEFT_ARROW)) {
+      console.log("left arrow is pressed");
+      avatarVX = -avatarSpeed;
+    }
+    else if (keyIsDown(RIGHT_ARROW)) {
+      console.log("right arrow is pressed");
+      avatarVX = avatarSpeed;
+    }
+
+    // Up and down (separate if-statements so you can move vertically and
+    // horizontally at the same time)
+    if (keyIsDown(UP_ARROW)) {
+      console.log("up arrow is pressed");
+      avatarVY = -avatarSpeed;
+    }
+    else if (keyIsDown(DOWN_ARROW)) {
+      console.log("down arrow is pressed");
+      avatarVY = avatarSpeed;
+    }
+  }
+}
+
   // Move the avatar according to its calculated velocity
   avatarX = avatarX + avatarVX;
   avatarY = avatarY + avatarVY;
