@@ -10,13 +10,14 @@ Starter code for exercise 2.
 // The position and size of our avatar circle
 var avatarX;
 var avatarY;
-var avatarSize = 150;
+var avatarSize = 100
+var avatarSizeIncrease = 10
 
 // The speed and velocity of our avatar circle
 var avatarSpeed = 10;
 var avatarVX = 0;
 var avatarVY = 0;
-
+var avatarSpeedIncrease = .5;
 // The position and size of the enemy circle
 var enemyX;
 var enemyY;
@@ -67,31 +68,7 @@ function setup() {
   noStroke();
 }
 
-// draw()
-//
-// Handle moving the avatar and enemy and checking for dodges and
-// game over situations.
-function draw() {
-  // A pink background
-background(bgImg);
-  //set a font
-  textFont(myFont);
-  //set the size of the text
-  textSize(30);
-  //display the amount of times the player dodged the enemy circle
-  console.log("display text");
-  //align the text at the top left
-  textAlign(LEFT, TOP);
-  fill(41, 48, 142);
-  text ("Total dodge rolls  " + dodges, width/20, height/20);
-  // Default the avatar's velocity to 0 in case no key is pressed this frame
-  avatarVX = 0;
-  avatarVY = 0;
-
-  // Check which keys are down and set the avatar's velocity based on its
-  // speed appropriately
-
-  // Left and right
+function movement() {
   if (keyIsDown(LEFT_ARROW)) {
     console.log("left arrow is pressed");
     avatarVX = -avatarSpeed;
@@ -111,18 +88,57 @@ background(bgImg);
     console.log("down arrow is pressed");
     avatarVY = avatarSpeed;
   }
+}
 
+function randomSpeed () {
+  if (dodges > 5) {
+  avatarSpeed = random(1,20);
+}
+  }
+
+  // Up and down (separate if-statements so you can move vertically and
+  // horizontally at the same time)
+  if (keyIsDown(UP_ARROW)) {
+    console.log("up arrow is pressed");
+    avatarVY = random(-avatarSpeed);
+  }
+  else if (keyIsDown(DOWN_ARROW)) {
+    console.log("down arrow is pressed");
+    avatarVY =  random(avatarSpeed);
+  }
+
+
+// draw()
+//
+// Handle moving the avatar and enemy and checking for dodges and
+// game over situations.
+function draw() {
+  // A pink background
+background(bgImg);
+  //set a font
+  textFont(myFont);
+  //set the size of the text
+  textSize(30);
+  //display the amount of times the player dodged the enemy circle
+  console.log("display text");
+  //align the text at the top left
+  textAlign(LEFT, TOP);
+  fill(41, 48, 142);
+  text ("Total dodge rolls  " + dodges, width/20, height/20);
+
+  // Default the avatar's velocity to 0 in case no key is pressed this frame
+  avatarVX = 0;
+  avatarVY = 0;
+
+  // Check which keys are down and set the avatar's velocity based on its
+  // speed appropriately
+movement();
+  // Left and right
+
+//Makes it so that the avatar moves slowly at the beginning of the game
+//The first 5 dodges specifically
 if (dodges <=5) {
   console.log("move slower")
-  if (keyIsDown(LEFT_ARROW)) {
-    console.log("left arrow is pressed");
-    avatarVX = -avatarSpeed/3;
-  }
-  else if (keyIsDown(RIGHT_ARROW)) {
-    console.log("right arrow is pressed");
-    avatarVX = avatarSpeed/3;
-  }
-
   // Up and down (separate if-statements so you can move vertically and
   // horizontally at the same time)
   if (keyIsDown(UP_ARROW)) {
@@ -136,11 +152,11 @@ if (dodges <=5) {
   else {
     if (keyIsDown(LEFT_ARROW)) {
       console.log("left arrow is pressed");
-      avatarVX = -avatarSpeed;
+      avatarVX = -avatarSpeed/2;
     }
     else if (keyIsDown(RIGHT_ARROW)) {
       console.log("right arrow is pressed");
-      avatarVX = avatarSpeed;
+      avatarVX = avatarSpeed/2;
     }
 
     // Up and down (separate if-statements so you can move vertically and
@@ -180,6 +196,8 @@ if (dodges <=5) {
     // Reset the avatar's position
     avatarX = width/2;
     avatarY = height/2;
+    //reset the avatar's size
+    avatarSize = 100;
     // Reset the dodge counter
     dodges = 0;
   }
@@ -209,17 +227,19 @@ if (dodges <=5) {
     // Increase the enemy's speed and size to make the game harder
     enemySpeed = enemySpeed + enemySpeedIncrease;
     enemySize = enemySize + random(10,enemySizeIncrease);
+    //Changes the players size
+    avatarSize = random(60, 100);
+    randomSpeed();
   }
 
   // Display the current number of successful in the console
   console.log(dodges);
 
 
-  // Draw the player as a circle
+  // Load the image for avatar
   image(avatarImg, avatarX,avatarY,avatarSize,avatarSize);
 
-  // The enemy is red
-  // Draw the enemy as a circle
+  // Load the image for enemy
   image(enemyImg, enemyX,enemyY,enemySize,enemySize);
 
 }
