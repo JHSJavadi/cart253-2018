@@ -10,7 +10,7 @@ Starter code for exercise 2.
 // The position and size of our avatar circle
 var avatarX;
 var avatarY;
-var avatarSize = 50;
+var avatarSize = 150;
 
 // The speed and velocity of our avatar circle
 var avatarSpeed = 10;
@@ -20,7 +20,7 @@ var avatarVY = 0;
 // The position and size of the enemy circle
 var enemyX;
 var enemyY;
-var enemySize = 50;
+var enemySize = 100;
 // How much bigger the enemy circle gets with each successful dodge
 var enemySizeIncrease = 20;
 
@@ -30,12 +30,20 @@ var enemyVX = 5;
 // How much bigger the enemy circle gets with each successful dodge
 var enemySpeedIncrease = 0.5;
 
+var enemyImg;
+var avatarImg;
+
+var bgImg;
+
 // How many dodges the player has made
 var dodges = 0;
 var myFont;
 
 function preload() {
   myFont = loadFont("assets/font/kh.ttf");
+  enemyImg = loadImage("assets/images/heartless.png");
+  avatarImg = loadImage("assets/images/riku.png");
+  bgImg = loadImage("assets/images/island.gif");
 }
 
 // setup()
@@ -44,7 +52,7 @@ function preload() {
 function setup() {
   console.log("setup");
   // Create our playing area
-  createCanvas(500,500);
+  createCanvas(900,500);
 
   // Put the avatar in the centre
   avatarX = width/2;
@@ -65,7 +73,7 @@ function setup() {
 // game over situations.
 function draw() {
   // A pink background
-  background(229, 229, 229);
+background(bgImg);
   //set a font
   textFont(myFont);
   //set the size of the text
@@ -162,14 +170,12 @@ function draw() {
   // Display the current number of successful in the console
   console.log(dodges);
 
-  // The player is black
-  fill(0);
+
   // Draw the player as a circle
-  ellipse(avatarX,avatarY,avatarSize,avatarSize);
+  image(avatarImg, avatarX,avatarY,avatarSize,avatarSize);
 
   // The enemy is red
-  fill(255,0,0);
   // Draw the enemy as a circle
-  ellipse(enemyX,enemyY,enemySize,enemySize);
+  image(enemyImg, enemyX,enemyY,enemySize,enemySize);
 
 }
