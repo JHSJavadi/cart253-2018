@@ -120,6 +120,9 @@ function draw() {
 fill(252, 134, 95);
 rect(0,30, 100, 80);
 image(sampleImg, 40,60);
+textFont("Helvetica");
+fill(0);
+text("Lost Dog!", 10,100);
 
   if (gameOver) {
     // Prepare our typography
