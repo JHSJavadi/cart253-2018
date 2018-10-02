@@ -43,6 +43,7 @@ var gameOver = false;
 // Loads the target and decoy images before the program starts
 function preload() {
   targetImage = loadImage("assets/images/animals-target.png");
+  sampleImg = loadImage("assets/images/sample.png");
 
   decoyImage1 = loadImage("assets/images/animals-01.png");
   decoyImage2 = loadImage("assets/images/animals-02.png");
@@ -115,10 +116,10 @@ function setup() {
 }
 
 function draw() {
-sampleImg = targetImage;
-fill(255, 159, 114);
-rect(0,30, 40, 20);
-
+  noStroke();
+fill(252, 134, 95);
+rect(0,30, 100, 80);
+image(sampleImg, 40,60);
 
   if (gameOver) {
     // Prepare our typography
