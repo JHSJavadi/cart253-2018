@@ -31,6 +31,9 @@ var decoyImage8;
 var decoyImage9;
 var decoyImage10;
 
+var rectX = 100;
+var rectY = 80;
+
 // The number of decoys to show on the screen, randomly
 // chosen from the decoy images
 var numDecoys = 100;
@@ -108,18 +111,18 @@ function setup() {
     }
   }
 
-  // Once we've displayed all decoys, we choose a location for the target
-  targetX = random(0,width);
-  targetY = random(0,height);
-  // And draw it (this means it will always be on top)
-  image(targetImage,targetX,targetY);
+placeDog();
 }
 
 function draw() {
+  //removed stroke from rectangle so it wont flash when user finds the dog
   noStroke();
+  //set the color and position of the rectangle
 fill(252, 134, 95);
-rect(0,30, 100, 80);
+rect(0,30, rectX, rectY);
+//displayed the smaller image of the dog
 image(sampleImg, 40,60);
+//added text and chose the font
 textFont("Helvetica");
 fill(0);
 text("Lost Dog!", 10,100);
@@ -139,6 +142,9 @@ text("Lost Dog!", 10,100);
     strokeWeight(10);
     ellipse(targetX,targetY,targetImage.width,targetImage.height);
   }
+  while (targetX && targetY === rectX && rectY) {
+    placeDog();
+  }
 }
 
 // mousePressed()
@@ -152,4 +158,12 @@ function mousePressed() {
       gameOver = true;
     }
   }
+}
+
+function placeDog () {
+  // Once we've displayed all decoys, we choose a location for the target
+  targetX = random(0,width);
+  targetY = random(0,height);
+  // And draw it (this means it will always be on top)
+  image(targetImage,targetX,targetY);
 }
