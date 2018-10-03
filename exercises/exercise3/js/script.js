@@ -71,6 +71,7 @@ function setup() {
 }
 
 function draw() {
+  //makes it so the dog will neer be behind the rectangle
   while (targetX < width - 350 && targetY < height - 150) {
     console.log("replaced");
       background("#ffff00")
@@ -136,6 +137,7 @@ function placeDog () {
 
 function placeDecoys () {
   // Use a for loop to draw as many decoys as we need
+  //randomized number of Decoys
   numDecoys = random(100,250);
   for (var i = 0; i < numDecoys; i++) {
     // Choose a random location for this decoy
@@ -143,6 +145,7 @@ function placeDecoys () {
     var y = random(0,height);
     // Generate a random number we can use for probability
     var r = random();
+    //made a variable to dictate the random size of the decoys
     var size = random(.6, 1.2);
     // Use the random number to display one of the ten decoy
     // images, each with a 10% chance of being shown
