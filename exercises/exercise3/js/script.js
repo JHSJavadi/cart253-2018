@@ -16,8 +16,6 @@ var targetY;
 var targetImage;
 
 var sampleImg;
-var sampleX;
-var sampleY;
 
 // The ten decoy images
 var decoyImage1;
@@ -68,10 +66,8 @@ function setup() {
   createCanvas(windowWidth,windowHeight);
   background("#ffff00");
   imageMode(CENTER);
-
-
-placeDecoys();
-placeDog();
+  placeDecoys();
+  placeDog();
 }
 
 function draw() {
@@ -82,8 +78,8 @@ function draw() {
       rect(0,30, rectX, rectY);
       //displayed the smaller image of the dog
       image(sampleImg, 40,60);
-placeDog();
-placeDecoys();
+    placeDog();
+    placeDecoys();
 }
 
   if (gameOver) {
@@ -140,44 +136,46 @@ function placeDog () {
 
 function placeDecoys () {
   // Use a for loop to draw as many decoys as we need
+  numDecoys = random(100,250);
   for (var i = 0; i < numDecoys; i++) {
     // Choose a random location for this decoy
     var x = random(0,width);
     var y = random(0,height);
     // Generate a random number we can use for probability
     var r = random();
+    var size = random(.6, 1.2);
     // Use the random number to display one of the ten decoy
     // images, each with a 10% chance of being shown
     // We'll talk more about this nice quality of random soon enough
     if (r < 0.1) {
-      image(decoyImage1,x,y);
+      image(decoyImage1,x,y,decoyImage1.width*size,decoyImage1.height*size);
     }
     else if (r < 0.2) {
-      image(decoyImage2,x,y);
+      image(decoyImage2,x,y,decoyImage2.width*size,decoyImage2.height*size);
     }
     else if (r < 0.3) {
-      image(decoyImage3,x,y);
+      image(decoyImage3,x,y,decoyImage3.width*size,decoyImage3.height*size);
     }
     else if (r < 0.4) {
-      image(decoyImage4,x,y);
+      image(decoyImage4,x,y,decoyImage4.width*size,decoyImage4.height*size);
     }
     else if (r < 0.5) {
-      image(decoyImage5,x,y);
+      image(decoyImage5,x,y,decoyImage5.width*size,decoyImage5.height*size);
     }
     else if (r < 0.6) {
-      image(decoyImage6,x,y);
+      image(decoyImage6,x,y,decoyImage6.width*size,decoyImage6.height*size);
     }
     else if (r < 0.7) {
-      image(decoyImage7,x,y);
+      image(decoyImage7,x,y,decoyImage7.width*size,decoyImage7.height*size);
     }
     else if (r < 0.8) {
-      image(decoyImage8,x,y);
+      image(decoyImage8,x,y,decoyImage8.width*size,decoyImage8.height*size);
     }
     else if (r < 0.9) {
-      image(decoyImage9,x,y);
+      image(decoyImage9,x,y,decoyImage9.width*size,decoyImage9.height*size);
     }
     else if (r < 1.0) {
-      image(decoyImage10,x,y);
+      image(decoyImage10,x,y,decoyImage10.width*size,decoyImage10.height*size);
     }
   }
 }
