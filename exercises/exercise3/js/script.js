@@ -69,47 +69,47 @@ function setup() {
   background("#ffff00");
   imageMode(CENTER);
 
-  // // Use a for loop to draw as many decoys as we need
-  // for (var i = 0; i < numDecoys; i++) {
-  //   // Choose a random location for this decoy
-  //   var x = random(0,width);
-  //   var y = random(0,height);
-  //   // Generate a random number we can use for probability
-  //   var r = random();
-  //   // Use the random number to display one of the ten decoy
-  //   // images, each with a 10% chance of being shown
-  //   // We'll talk more about this nice quality of random soon enough
-  //   if (r < 0.1) {
-  //     image(decoyImage1,x,y);
-  //   }
-  //   else if (r < 0.2) {
-  //     image(decoyImage2,x,y);
-  //   }
-  //   else if (r < 0.3) {
-  //     image(decoyImage3,x,y);
-  //   }
-  //   else if (r < 0.4) {
-  //     image(decoyImage4,x,y);
-  //   }
-  //   else if (r < 0.5) {
-  //     image(decoyImage5,x,y);
-  //   }
-  //   else if (r < 0.6) {
-  //     image(decoyImage6,x,y);
-  //   }
-  //   else if (r < 0.7) {
-  //     image(decoyImage7,x,y);
-  //   }
-  //   else if (r < 0.8) {
-  //     image(decoyImage8,x,y);
-  //   }
-  //   else if (r < 0.9) {
-  //     image(decoyImage9,x,y);
-  //   }
-  //   else if (r < 1.0) {
-  //     image(decoyImage10,x,y);
-  //   }
-  // }
+  // Use a for loop to draw as many decoys as we need
+  for (var i = 0; i < numDecoys; i++) {
+    // Choose a random location for this decoy
+    var x = random(0,width);
+    var y = random(0,height);
+    // Generate a random number we can use for probability
+    var r = random();
+    // Use the random number to display one of the ten decoy
+    // images, each with a 10% chance of being shown
+    // We'll talk more about this nice quality of random soon enough
+    if (r < 0.1) {
+      image(decoyImage1,x,y);
+    }
+    else if (r < 0.2) {
+      image(decoyImage2,x,y);
+    }
+    else if (r < 0.3) {
+      image(decoyImage3,x,y);
+    }
+    else if (r < 0.4) {
+      image(decoyImage4,x,y);
+    }
+    else if (r < 0.5) {
+      image(decoyImage5,x,y);
+    }
+    else if (r < 0.6) {
+      image(decoyImage6,x,y);
+    }
+    else if (r < 0.7) {
+      image(decoyImage7,x,y);
+    }
+    else if (r < 0.8) {
+      image(decoyImage8,x,y);
+    }
+    else if (r < 0.9) {
+      image(decoyImage9,x,y);
+    }
+    else if (r < 1.0) {
+      image(decoyImage10,x,y);
+    }
+  }
 
 placeDog();
 }
@@ -124,7 +124,13 @@ function draw() {
     noStroke();
     fill(random(255));
     // Tell them they won!
-    text("YOU WINNED!",width/2,height/2);
+    background("#ffff00");
+      text("YOU WINNED!",width/2,height/2);
+    targetX = random(0,width);
+    targetY = random(0,height);
+    // And draw it (this means it will always be on top)
+    image(targetImage,targetX,targetY);
+
 
     noFill();
     stroke(random(255));
