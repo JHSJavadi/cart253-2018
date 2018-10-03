@@ -69,6 +69,76 @@ function setup() {
   background("#ffff00");
   imageMode(CENTER);
 
+
+placeDecoys();
+placeDog();
+}
+
+function draw() {
+  while (targetX < width - 350 && targetY < height - 150) {
+    console.log("replaced");
+      background("#ffff00")
+      fill(252, 134, 95);
+      rect(0,30, rectX, rectY);
+      //displayed the smaller image of the dog
+      image(sampleImg, 40,60);
+placeDog();
+placeDecoys();
+}
+
+  if (gameOver) {
+    // Prepare our typography
+    textFont("Helvetica");
+    textSize(128);
+    textAlign(CENTER,CENTER);
+    noStroke();
+    fill(random(255));
+    // Tell them they won!
+      text("YOU WINNED!",width/2,height/2);
+    targetX = random(0,width);
+    targetY = random(0,height);
+    // And draw it (this means it will always be on top)
+    image(targetImage,targetX,targetY);
+    noFill();
+    stroke(random(255));
+    strokeWeight(10);
+    ellipse(targetX,targetY,targetImage.width,targetImage.height);
+  }
+  noStroke();
+  //set the color and position of the rectangle
+fill(252, 134, 95);
+rect(0,30, rectX, rectY);
+//displayed the smaller image of the dog
+image(sampleImg, 40,60);
+//added text and chose the font
+textFont("Helvetica");
+fill(0);
+text("Find pup!", 10,100);
+}
+
+// mousePressed()
+//
+// Checks if the player clicked on the target and if so tells them they won
+function mousePressed() {
+  // Check if the mouse is in the x range of the target
+  if (mouseX > targetX - targetImage.width/2 && mouseX < targetX + targetImage.width/2) {
+    // Check if the mouse is also in the y range of the target
+    if (mouseY > targetY - targetImage.height/2 && mouseY < targetY + targetImage.height/2) {
+      gameOver = true;
+    }
+  }
+}
+
+
+function placeDog () {
+  // Once we've displayed all decoys, we choose a location for the target
+  targetX = random(0,width);
+  targetY = random(0,height);
+  // And draw it (this means it will always be on top)
+  image(targetImage,targetX,targetY);
+}
+
+function placeDecoys () {
   // Use a for loop to draw as many decoys as we need
   for (var i = 0; i < numDecoys; i++) {
     // Choose a random location for this decoy
@@ -110,73 +180,4 @@ function setup() {
       image(decoyImage10,x,y);
     }
   }
-
-placeDog();
-}
-
-function draw() {
-
-  if (gameOver) {
-    // Prepare our typography
-    textFont("Helvetica");
-    textSize(128);
-    textAlign(CENTER,CENTER);
-    noStroke();
-    fill(random(255));
-    // Tell them they won!
-    background("#ffff00");
-      text("YOU WINNED!",width/2,height/2);
-    targetX = random(0,width);
-    targetY = random(0,height);
-    // And draw it (this means it will always be on top)
-    image(targetImage,targetX,targetY);
-
-
-    noFill();
-    stroke(random(255));
-    strokeWeight(10);
-    ellipse(targetX,targetY,targetImage.width,targetImage.height);
-  }
-  while (targetX < width - 350 && targetY < height - 150) {
-    console.log("replaced");
-      background("#ffff00")
-      fill(252, 134, 95);
-      rect(0,30, rectX, rectY);
-      //displayed the smaller image of the dog
-      image(sampleImg, 40,60);
-      //added text and chose the font
-    placeDog();
-  }
-  noStroke();
-  //set the color and position of the rectangle
-fill(252, 134, 95);
-rect(0,30, rectX, rectY);
-//displayed the smaller image of the dog
-image(sampleImg, 40,60);
-//added text and chose the font
-textFont("Helvetica");
-fill(0);
-text("Find pup!", 10,100);
-}
-
-// mousePressed()
-//
-// Checks if the player clicked on the target and if so tells them they won
-function mousePressed() {
-  // Check if the mouse is in the x range of the target
-  if (mouseX > targetX - targetImage.width/2 && mouseX < targetX + targetImage.width/2) {
-    // Check if the mouse is also in the y range of the target
-    if (mouseY > targetY - targetImage.height/2 && mouseY < targetY + targetImage.height/2) {
-      gameOver = true;
-    }
-  }
-}
-
-
-function placeDog () {
-  // Once we've displayed all decoys, we choose a location for the target
-  targetX = random(0,width);
-  targetY = random(0,height);
-  // And draw it (this means it will always be on top)
-  image(targetImage,targetX,targetY);
 }
