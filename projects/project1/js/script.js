@@ -43,6 +43,10 @@ var preyFill = 200;
 var eatHealth = 10;
 // Number of prey eaten during the game
 var preyEaten = 0;
+//t variable for perlin noise
+var tx = 1;
+var ty = 1;
+var t = 0.5;
 
 // setup()
 //
@@ -222,8 +226,10 @@ function movePrey() {
     // and speed of movement
     // Use map() to convert from the 0-1 range of the random() function
     // to the appropriate range of velocities for the prey
-    preyVX = map(random(),0,1,-preyMaxSpeed,preyMaxSpeed);
-    preyVY = map(random(),0,1,-preyMaxSpeed,preyMaxSpeed);
+    preyVX = map(noise(tx)*2,0,4,-preyMaxSpeed,preyMaxSpeed);
+    preyVY = map(noise(ty)*.5,0,1,-preyMaxSpeed,preyMaxSpeed);
+    tx ++;
+    ty ++;
   }
 
   // Update prey position based on velocity
