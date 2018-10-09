@@ -281,6 +281,7 @@ function drawPrey() {
   ellipse(preyX,preyY,preyRadius*2);
 }
 
+//the more the player will capture the prey, the prey will get smaller in size
 function changePreySize () {
   if (preyEaten > 2) {
   preyRadius = 22;
