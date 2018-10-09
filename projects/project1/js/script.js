@@ -128,6 +128,14 @@ function handleInput() {
   else {
     playerVY = 0;
   }
+
+  //add in a sprint function
+  if (keyIsDown(SHIFT)) {
+    playerMaxSpeed = 5;
+  }
+  else {
+    playerMaxSpeed = 2;
+  }
 }
 
 // movePlayer()
