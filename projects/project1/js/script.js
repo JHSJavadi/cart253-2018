@@ -319,10 +319,13 @@ function showGameOver() {
   textSize(32);
   textAlign(CENTER,CENTER);
   fill(0);
+  //added custom textFont
   textFont(myFont);
   var gameOverText = "GAME OVER\n";
+  //depending how many points the player got, the game over text will
+  //display different text, none of which are meant to give the player praise
   if (preyEaten < 3) {
-    gameOverText += "Did you even try..?";
+    gameOverText += "Did you even try?";
   }
   else if (preyEaten > 4) {
     gameOverText += "You could do better.";
