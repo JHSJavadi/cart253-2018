@@ -90,7 +90,7 @@ function setupPlayer() {
 // displays the two agents.
 // When the game is over, shows the game over screen.
 function draw() {
-  background(100,100,200);
+  background(playerHealth,preyHealth,150);
 
   if (!gameOver) {
     handleInput();
@@ -100,8 +100,7 @@ function draw() {
 
     updateHealth();
     checkEating();
-    lessHealthLoss();
-    changePreySize();
+    lessLossBiggerSize();
 
     drawPrey();
     drawPlayer();
@@ -147,7 +146,7 @@ function handleInput() {
   else {
     playerMaxSpeed = 2;
       //when not sprinting, reduce players health by the set amount
-    playerHealth = constrain(playerHealth - 0.5,0,playerMaxHealth);
+    playerHealth = constrain(playerHealth -1,0,playerMaxHealth);
   }
 }
 
@@ -220,21 +219,26 @@ function checkEating() {
 //if they player has eaten a certain amount of prey, the amount that they lose
 //health by is reduced. This gives the player a little bit of an easier time
 // with handling everything else
-function lessHealthLoss () {
-  if (4 > preyEaten > 2) {
+function lessLossBiggerSize () {
+  if (preyEaten > 2) {
     playerHealth = constrain(playerHealth + 0.2,0,playerMaxHealth);
+    preyRadius = 22;
   }
-  else if (9 > preyEaten > 4) {
+  else if (preyEaten > 4) {
+      playerHealth = constrain(playerHealth + 0.3,0,playerMaxHealth);
+      preyRadius = 19;
+  }
+  else if (preyEaten > 9) {
       playerHealth = constrain(playerHealth + 0.4,0,playerMaxHealth);
-  }
-  else if (14 > preyEaten > 9) {
-      playerHealth = constrain(playerHealth + 0.6,0,playerMaxHealth);
+      preyRadius = 16;
   }
   else if (preyEaten > 14) {
-      playerHealth = constrain(playerHealth + 0.8,0,playerMaxHealth);
+      playerHealth = constrain(playerHealth + 0.5,0,playerMaxHealth);
+      preyRadius = 12;
   }
   else {
-      playerHealth = constrain(playerHealth + 0.2,0,playerMaxHealth);
+      playerHealth = constrain(playerHealth + 0.6,0,playerMaxHealth);
+      preyRadius = 25;
   }
 }
 //END NEW//
@@ -275,32 +279,11 @@ function movePrey() {
   }
 }
 
-//NEW//
-//the more the player will capture the prey, the prey will get smaller in size
-function changePreySize () {
-  if (preyEaten > 2) {
-  preyRadius = 22;
-  }
-  else  if (preyEaten > 4) {
-      preyRadius = 19;
-    }
-  else  if (preyEaten > 9) {
-      preyRadius = 16;
-    }
-    else if (preyEaten > 14) {
-      preyRadius = 12;
-    }
-    else {
-      preyRadius = 25;
-    }
-}
-//END NEW//
-
 // drawPrey()
 //
 // Draw the prey as an ellipse with alpha based on health
 function drawPrey() {
-  fill(preyFill,preyHealth);
+  fill(preyFill,preyHealth, 255);
   ellipse(preyX,preyY,preyRadius*2);
 }
 
@@ -308,7 +291,7 @@ function drawPrey() {
 //
 // Draw the player as an ellipse with alpha based on health
 function drawPlayer() {
-  fill(playerFill,playerHealth);
+  fill(playerFill,playerHealth,240);
   ellipse(playerX,playerY,playerRadius*2);
 }
 
@@ -333,7 +316,7 @@ function showGameOver() {
   else if (preyEaten > 7) {
     gameOverText += "Not impressive.";
   }
-  else if (preyEatean > 10) {
+  else if (preyEaten > 10) {
     gameOverText += "Is that the best you have to offer?";
   }
   text(gameOverText,width/2,height/2);
