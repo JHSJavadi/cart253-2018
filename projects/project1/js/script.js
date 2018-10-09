@@ -47,6 +47,7 @@ var preyEaten = 0;
 var preyTX = 6;
 var preyTY = 90;
 var preyT = 0.5;
+var myFont;
 
 // setup()
 //
@@ -55,6 +56,7 @@ function setup() {
   createCanvas(500,500);
 
   noStroke();
+  myFont = loadFont("assets/font/kh.ttf");
 
   setupPrey();
   setupPlayer();
@@ -273,14 +275,7 @@ function movePrey() {
   }
 }
 
-// drawPrey()
-//
-// Draw the prey as an ellipse with alpha based on health
-function drawPrey() {
-  fill(preyFill,preyHealth);
-  ellipse(preyX,preyY,preyRadius*2);
-}
-
+//NEW//
 //the more the player will capture the prey, the prey will get smaller in size
 function changePreySize () {
   if (preyEaten > 2) {
@@ -299,6 +294,15 @@ function changePreySize () {
       preyRadius = 25;
     }
 }
+//END NEW//
+
+// drawPrey()
+//
+// Draw the prey as an ellipse with alpha based on health
+function drawPrey() {
+  fill(preyFill,preyHealth);
+  ellipse(preyX,preyY,preyRadius*2);
+}
 
 // drawPlayer()
 //
@@ -315,8 +319,19 @@ function showGameOver() {
   textSize(32);
   textAlign(CENTER,CENTER);
   fill(0);
+  textFont(myFont);
   var gameOverText = "GAME OVER\n";
-  gameOverText += "You ate " + preyEaten + " prey\n";
-  gameOverText += "before you died."
+  if (preyEaten < 3) {
+    gameOverText += "Did you even try..?";
+  }
+  else if (preyEaten > 4) {
+    gameOverText += "You could do better.";
+  }
+  else if (preyEaten > 7) {
+    gameOverText += "Not impressive.";
+  }
+  else if (preyEatean > 10) {
+    gameOverText += "Is that the best you have to offer?";
+  }
   text(gameOverText,width/2,height/2);
 }
