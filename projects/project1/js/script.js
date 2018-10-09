@@ -226,10 +226,14 @@ function movePrey() {
     // and speed of movement
     // Use map() to convert from the 0-1 range of the random() function
     // to the appropriate range of velocities for the prey
+    
+    //NEW//
+    //used noise() instead of random to change the prey's movement
     preyVX = map(noise(tx)*2,0,4,-preyMaxSpeed,preyMaxSpeed);
     preyVY = map(noise(ty)*.5,0,1,-preyMaxSpeed,preyMaxSpeed);
     tx ++;
     ty ++;
+    //END NEW//
   }
 
   // Update prey position based on velocity
