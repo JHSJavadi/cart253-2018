@@ -98,6 +98,8 @@ function draw() {
 
     updateHealth();
     checkEating();
+    lessHealthLoss();
+    changePreySize();
 
     drawPrey();
     drawPlayer();
@@ -136,14 +138,12 @@ function handleInput() {
   //add in a sprint function
   if (keyIsDown(SHIFT)) {
     //check the decrease in health of the player when using sprint
-    console.log(playerHealth);
     playerMaxSpeed = 5;
     //reduce the players health by 2 rather than 1 when sprinting
     playerHealth = constrain(playerHealth - 1.5,0,playerMaxHealth);
   }
   else {
     playerMaxSpeed = 2;
-      console.log(playerHealth);
       //when not sprinting, reduce players health by the set amount
     playerHealth = constrain(playerHealth - 0.5,0,playerMaxHealth);
   }
@@ -180,6 +180,7 @@ function movePlayer() {
 // Check if the player is dead
 function updateHealth() {
   // Reduce player health, constrain to reasonable range
+  console.log(playerHealth);
   playerHealth = constrain(playerHealth - 0.5,0,playerMaxHealth);
   // Check if the player is dead
   if (playerHealth === 0) {
@@ -213,25 +214,43 @@ function checkEating() {
     }
   }
 }
+//NEW//
+//if they player has eaten a certain amount of prey, the amount that they lose
+//health by is reduced. This gives the player a little bit of an easier time
+// with handling everything else
+function lessHealthLoss () {
+  if (4 > preyEaten > 2) {
+    playerHealth = constrain(playerHealth + 0.2,0,playerMaxHealth);
+  }
+  else if (9 > preyEaten > 4) {
+      playerHealth = constrain(playerHealth + 0.4,0,playerMaxHealth);
+  }
+  else if (14 > preyEaten > 9) {
+      playerHealth = constrain(playerHealth + 0.6,0,playerMaxHealth);
+  }
+  else if (preyEaten > 14) {
+      playerHealth = constrain(playerHealth + 0.8,0,playerMaxHealth);
+  }
+  else {
+      playerHealth = constrain(playerHealth + 0.2,0,playerMaxHealth);
+  }
+}
+//END NEW//
 
 // movePrey()
 //
 // Moves the prey based on random velocity changes
 function movePrey() {
-  // Change the prey's velocity at random intervals
-  // random() will be < 0.05 5% of the time, so the prey
-  // will change direction on 5% of frames
     // Set velocity based on random values to get a new direction
     // and speed of movement
     // Use map() to convert from the 0-1 range of the random() function
     // to the appropriate range of velocities for the prey
-
     //NEW//
     //used noise() instead of random to change the prey's movement
     preyVX = map(noise(preyTX),0,.9974,-preyMaxSpeed,preyMaxSpeed);
     preyVY = map(noise(preyTY),0,.93,-preyMaxSpeed,preyMaxSpeed);
-    preyTX += .04;
-    preyTY += .07;
+    preyTX += .08;
+    preyTY += .09;
     //END NEW//
 
   // Update prey position based on velocity
@@ -260,6 +279,24 @@ function movePrey() {
 function drawPrey() {
   fill(preyFill,preyHealth);
   ellipse(preyX,preyY,preyRadius*2);
+}
+
+function changePreySize () {
+  if (preyEaten > 2) {
+  preyRadius = 22;
+  }
+  else  if (preyEaten > 4) {
+      preyRadius = 19;
+    }
+  else  if (preyEaten > 9) {
+      preyRadius = 16;
+    }
+    else if (preyEaten > 14) {
+      preyRadius = 12;
+    }
+    else {
+      preyRadius = 25;
+    }
 }
 
 // drawPlayer()
