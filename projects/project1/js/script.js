@@ -131,10 +131,17 @@ function handleInput() {
 
   //add in a sprint function
   if (keyIsDown(SHIFT)) {
+    //check the decrease in health of the player when using sprint
+    console.log(playerHealth);
     playerMaxSpeed = 5;
+    //reduce the players health by 2 rather than 1 when sprinting
+    playerHealth = constrain(playerHealth - 1.5,0,playerMaxHealth);
   }
   else {
     playerMaxSpeed = 2;
+      console.log(playerHealth);
+      //when not sprinting, reduce players health by the set amount
+    playerHealth = constrain(playerHealth - 0.5,0,playerMaxHealth);
   }
 }
 
