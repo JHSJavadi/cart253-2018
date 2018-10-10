@@ -97,6 +97,7 @@ function draw() {
 
     movePlayer();
     movePrey();
+    moveSlower();
 
     updateHealth();
     checkEating();
@@ -174,6 +175,34 @@ function movePlayer() {
     playerY -= height;
   }
 }
+//NEW//
+//the player will move slower the less health it has
+function moveSlower() {
+  if (playerHealth <= 100) {
+    console.log("going slower");
+    if (keyIsDown(LEFT_ARROW)) {
+      playerVX = -playerMaxSpeed/4;
+    }
+    else if (keyIsDown(RIGHT_ARROW)) {
+      playerVX = playerMaxSpeed/4;
+    }
+    else {
+      playerVX = 0;
+    }
+
+    // Check for vertical movement
+    if (keyIsDown(UP_ARROW)) {
+      playerVY = -playerMaxSpeed/4;
+    }
+    else if (keyIsDown(DOWN_ARROW)) {
+      playerVY = playerMaxSpeed/4;
+    }
+    else {
+      playerVY = 0;
+    }
+  }
+}
+//END NEW//
 
 // updateHealth()
 //
