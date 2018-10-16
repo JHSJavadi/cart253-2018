@@ -264,11 +264,11 @@ function handleBallOffScreen() {
     // position is reset.
     // This is where we would count points etc!
     if (ballRight< 0) {
-      leftPaddle.leftPaddleScore += 1;
+      leftPaddle.leftPaddleScore ++;
       console.log(leftPaddle.leftPaddleScore + " point for left!");
     }
     else if (ballLeft > width) {
-      rightPaddle.rightPaddleScore +=1;
+      rightPaddle.rightPaddleScore ++;
       console.log(rightPaddle.rightPaddleScore + " point for right!");
     }
   }
