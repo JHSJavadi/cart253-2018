@@ -7,13 +7,15 @@
 // Ball constructor
 //
 // Sets the properties with the provided arguments
-function Ball(x,y,vx,vy,size,speed) {
+function Ball(x,y,vx,vy,size,speed,score,score2) {
   this.x = x;
   this.y = y;
   this.vx = vx;
   this.vy = vy;
   this.size = size;
   this.speed = speed;
+  this.score = score;
+  this.score2 = score2;
 }
 
 // update()
@@ -41,12 +43,17 @@ Ball.prototype.update = function () {
 // Otherwise it returns false.
 Ball.prototype.isOffScreen = function () {
   // Check for going off screen and reset if so
-  if (this.x + this.size < 0 || this.x > width) {
+  if (this.x + this.size < 0) {
+    console.log("left")
     return true;
-  }
-  else {
-    return false;
-  }
+}
+else if (this.x > width) {
+  console.log("right");
+  return true;
+}
+else {
+  return false;
+}
 }
 
 // display()
