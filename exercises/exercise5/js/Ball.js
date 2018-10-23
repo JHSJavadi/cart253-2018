@@ -43,6 +43,8 @@ Ball.prototype.update = function () {
 // Otherwise it returns false.
 Ball.prototype.isOffScreen = function () {
   // Check for going off screen and reset if so
+  //record the 'point' by saying which side the ball went off screen 
+  //in console.log
   if (this.x + this.size < 0) {
     console.log("left")
     return true;
