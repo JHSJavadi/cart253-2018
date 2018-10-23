@@ -45,10 +45,13 @@ Ball.prototype.isOffScreen = function () {
   //in console.log
   if (this.x + this.size < 0) {
     console.log("left")
+      this.vx = random(-2, 3);
     return true;
+
 }
 else if (this.x > width) {
   console.log("right");
+    this.vx = random(-2, 3);
   return true;
 }
 else {
