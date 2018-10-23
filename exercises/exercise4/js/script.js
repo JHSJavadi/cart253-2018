@@ -273,9 +273,6 @@ function handleBallOffScreen() {
       console.log(rightPaddle.Score + " point for right!");
       ball.vx = 10;
     }
-    else{
-    ball.vx = ball.speed;
-    }
     if (ballLeft > width) {
       //add one point for the right paddle as the ball
       //goes off the oppposite side
@@ -284,9 +281,7 @@ function handleBallOffScreen() {
       console.log(leftPaddle.Score + " point for left!");
       ball.vx = 10;
     }
-    else{
     ball.vx = ball.speed;
-    }
   }
 
 }
