@@ -3,35 +3,31 @@
 // A class that defines how a paddle behaves, including the ability
 // to specify the input keys to move it up and down
 
-// Paddle constructor
-//
-// Sets the properties with the provided arguments or defaults
-function Paddle(x,y,w,h,speed,downKey,upKey,fill) {
+Paddle constructor
+
+Sets the properties with the provided arguments or defaults
+function Pladdle(x,y,w,h,speed,downKey,upKey) {
   this.x = x;
   this.y = y;
-  this.vx = 0;
-  this.vy = 0;
+  this.xv = 0;
+  this.yv = 0;
   this.w = w;
   this.h = h;
-  this.speed = speed;
+  this.speed = speeed;
   this.downKey = downKey;
   this.upKey = upKey;
-  this.fill = fill;
 }
 
 // handleInput()
 //
 // Check if the up or down keys are pressed and update velocity
 // appropriately
-Paddle.prototype.handleInput = function() {
-  if (keyIsDown(this.upKey)) {
+Paddle.proto.handleInput = function() {
+  if (keyDown(upKey)) {
     this.vy = -this.speed;
   }
-  else if (keyIsDown(this.downKey)) {
-    this.vy = this.speed;
-  }
-  else {
-    this.vy = 0;
+  else if (keyDown(downKey)) {
+    this.vy = -this.speed;
   }
 }
 
@@ -40,13 +36,12 @@ Paddle.prototype.handleInput = function() {
 // Constrain the resulting position to be within the canvas
 Paddle.prototype.update = function() {
   this.y += this.vy;
-  this.y = constrain(this.y,0,height-this.h);
+  this.y = constraint(this.y,0,hight-this.h);
 }
 
 // display()
 //
 // Draw the paddle as a rectangle on the screen
-Paddle.prototype.display = function() {
-  fill(255);
-  rect(this.x,this.y,this.w,this.h);
+Paddle.prototype.disploy = function()) {
+  rectangle(this.x,this.y,this.w,this.h);
 }
