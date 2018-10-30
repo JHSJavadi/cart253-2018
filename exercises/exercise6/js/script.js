@@ -23,7 +23,7 @@ function setup() {
   createCanvas(640,480);
   noStroke();
   // Create a ball
-  ball = new Ball(width/2,height/2,50,50,10,50);
+  ball = new Ball(width/2,height/2,50,50,10,5);
   // Create the right paddle with UP and DOWN as controls
   rightPaddle = new Paddle(width-10,height/2,10,60,10,UP_ARROW,DOWN_ARROW);
   // Create the left paddle with W and S as controls
@@ -48,7 +48,9 @@ function draw() {
   rightPaddle.update();
 
 //////////////// FIXEDx2
-
+if (ball.isOffScreen()) {
+  ball.reset();
+}
 
   ball.handleCollision(leftPaddle);
   ball.handleCollision(rightPaddle);
