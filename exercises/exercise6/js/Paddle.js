@@ -13,7 +13,7 @@ function Paddle(x,y,w,h,speed,downKey,upKey) {
   //////////////// FIXED
   this.xv = xv;
   //////////////// FIXED
-  this.vy = 0;
+  this.vy = vy;
   this.w = w;
   this.h = h;
   this.speed = speeed;
