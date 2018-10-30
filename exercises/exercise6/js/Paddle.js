@@ -7,13 +7,13 @@
 //Paddle constructor
 //Sets the properties with the provided arguments or defaults
 //////////////// FIXED x2
-function Paddle(x,y,vx,vy,w,h,speed,downKey,upKey) {
+function Paddle(x,y,w,h,speed,downKey,upKey) {
   this.x = x;
   this.y = y;
   //////////////// FIXEDx2
-  this.vx = vx;
+  this.vx = 0;
   //////////////// FIXEDx2
-  this.vy = vy;
+  this.vy = 0;
   this.w = w;
   this.h = h;
   //////////////// FIXED
@@ -30,11 +30,11 @@ function Paddle(x,y,vx,vy,w,h,speed,downKey,upKey) {
 Paddle.prototype.handleInput = function() {
   //////////////// FIXEDx2
   if (keyIsDown(this.upKey)) {
-    this.vy = this.speed;
+    this.vy = -this.speed;
   }
   //////////////// FIXEDx2
   else if (keyIsDown(this.downKey)) {
-    this.vy = -this.speed;
+    this.vy = this.speed;
   }
   //////////////// FIXED
   else {
